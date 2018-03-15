@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画布</title>
+    <style>
+        #draw{
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+<canvas width="400" height="400" id="draw"></canvas>
+</body>
+<script>
+    var oBox=document.querySelector("#draw");//能取类也能取ID
+    var draw=oBox.getContext("2d");
+    oBox.onmousedown = function (e) {
+        draw.beginPath();
+        draw.moveTo(e.clientX,e.clientY);
+        oBox.onmousemove=function (e) {
+            draw.lineTo(e.clientX,e.clientY);
+            draw.strokeStyle = "#fff";
+            draw.stroke();
+        };
+        oBox.onmouseup = function () {
+            oBox.onmousemove=null;
+        }
+    }
+</script>
+</html>
