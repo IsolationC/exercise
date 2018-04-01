@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    let obj = new Proxy({
+//        name: "aaa",
+//
+//    },{
+//        get:function (target,key,property) {
+//            console.log("get"+key,property);
+//        },
+//        set:function (target,key,value,receive) {
+//            console.log("set"+target,key,value,receive);
+//        }
+//    }
+//    );
+//
+//    obj.name = "bbb";
+//    console.log(obj.name);
+
+
+    let target = function(){
+        return 'target'
+    };
+    let handler = {
+        apply(target, ctx, args){
+            console.log('调用了apply');
+            return Reflect.apply(...arguments);
+        }
+    };
+
+    let proxy = new Proxy(target, handler);
+    console.log( proxy());
+</script>
+</body>
+</html>
