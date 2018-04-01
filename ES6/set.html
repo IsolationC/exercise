@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // let arr = new Set([1,2,3,4,5,6,1]);//值不重复
+    // arr.add(10);
+    // arr.delete(6);
+    // arr.clear();
+    // console.log(arr);
+
+    // let arr2 = [11,22,33,22,55];  //去重
+    // let arr3 = Array.from(new Set(arr2));
+    // console.log(arr3);
+
+    // let arr = new Set([1,2,3,4,5,6,1]);
+    // for(let [index,value] of arr.entries()){
+    //     console.log(index,value);
+    // }
+
+    let arr = new WeakSet();//成员只能是对象
+    let arr2 = [1,2,3,4,5];
+    arr.add(arr2);
+    console.log(arr);
+</script>
+</body>
+</html>
