@@ -23,8 +23,8 @@
      }
 
      var a = foo(5);
-     console.log(a.next());  //6
-     console.log(a.next(12));//8, 此时yield (x + 1)=12
+     console.log(a.next());  //yield (x + 1)=6
+     console.log(a.next(12));//此时yield (x + 1)=12, yield (y / 3)=8
      console.log(a.next(13));//此时x=5,y=24,z=13  return 42
 </script>
 </body>
