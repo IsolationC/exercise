@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--<div v-for="val in arr">{{val}}:{{index}}</div>-->
+    <div v-for="val in obj">name:{{val.name}} age:{{val.age}}:{{index}}</div>
+</div>
+<script src="vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        computed:{
+            return this.obj.sort(function (a,b) {
+
+            })
+        },
+        data:{
+            arr:[1,2,3,4,5,6,7],
+            obj:[{
+                name: "小明",
+                age: "20",
+                school: "heida"
+            },{
+                name: "小明2",
+                age: "23",
+                school: "heida"
+            },{
+                name: "小明3",
+                age: "14",
+                school: "heida"
+            }]
+        }
+    })
+</script>
+</body>
+</html>
