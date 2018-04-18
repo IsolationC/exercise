@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td{
+            border: 1px solid gray;
+            text-align: center;
+        }
+        .active{
+            background-color: #00aaee;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h1>ToDo List</h1>
+
+    <input type="text" v-model="search">
+    <button @click="searchList">搜索</button>
+
+    <input type="text" v-model="name">
+    <input type="text" v-model.number="price">
+    <button @click="addList">添加</button>
+    <table border="1">
+        <tr>
+            <th>选择</th>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>删除</th>
+        </tr>
+        <tr @click="select(val)" v-for="(val,index) in listArr" :class="{'active':val.isSelected}">
+            <td><input type="checkbox" @click.stop :value="index" v-model="checks"></td>
+            <td>{{val.name}}</td>
+            <td>{{val.price}}</td>
+            <td><button @click.stop="delList(index)">[X]</button></td>
+        </tr>
+        <tr>
+            <td><button @click="delAny">删除选中</button></td>
+            <td colspan="3">{{sum}}</td>
+        </tr>
+
+    </table>
+</div>
+<script src="vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            checks:[],
+            sum:0,
+            name:"",
+            price:0,
+            search:"",
+            listArr: [{
+                isSelected: false,
+                name:"cloth",
+                price:33,
+            },{
+                isSelected: false,
+                name:"shoes",
+                price:43,
+            },{
+                isSelected: false,
+                name:"yifu",
+                price:36,
+            },{
+                isSelected: false,
+                name:"fu",
+                price:71,
+            },{
+                isSelected: false,
+                name:"3DS",
+                price:1000,
+            }],
+
+        },
+        methods: {
+            select(val){
+                if (val.isSelected) {
+                    this.sum -= val.price;
+                } else {
+                    this.sum += val.price;
+                }
+
+                val.isSelected = !val.isSelected;
+            },
+
+            delList(index){
+                this.listArr.splice(index, 1);
+            },
+
+            delAny(){
+                let newArr = this.listArr.filter((val, index) => {
+                    if (!this.checks.includes(index)) {
+                        return val;
+                    }
+                })
+                this.listArr = newArr;
+                this.checks = [];
+            },
+
+            addList(){
+                this.listArr.push({
+                    isSelected: false,
+                    name: this.name,
+                    price: this.price,
+                })
+            },
+
+            searchList(){
+                let newArr = this.listArr.filter((val,index)=>{
+                    if(val.name.includes(this.search)){
+                        return val;
+                    }
+                })
+                this.listArr = newArr;
+            }
+
+        }
+    })
+
+</script>
+</body>
+</html>
