@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹出框</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .dia-container{
+
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="dia1">登录</button>
+    <button @click="dia2">注册</button>
+    <dialoga v-cloak v-show="diaShow" @close="diaShow=false">
+        <span slot="title">登录</span>
+    </dialoga>
+    <dialoga v-cloak v-show="dia2Show" @close="dia2Show=false">
+        <span slot="title">注册</span>
+    </dialoga>
+</div>
+
+<template id="dialog">
+    <div class="dia-bg">
+        <div class="dia-container">
+            <div class="title">
+                <slot name="title"></slot>
+                <span @click="$emit('close')">[X]</span>
+            </div>
+            <div class="content">
+                内容
+            </div>
+        </div>
+    </div>
+</template>
+<script src="vue.js"></script>
+<script>
+    Vue.component('dialoga',{
+        template:"#dialog",
+
+    })
+    new Vue({
+        el:"#app",
+        data:{
+            diaShow: false,
+            dia2Show: false
+        },
+        methods:{
+            dia1(){
+                this.diaShow = true
+            },
+            dia2(){
+                this.dia2Show = true
+            }
+        }
+    })
+</script>
+</body>
+</html>

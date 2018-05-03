@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <img :src="imgSrc+'.png'" alt="">
+    <!--<div :class="{{active:isActive}}">($-$)</div>-->
+    <!--<div :style="[styleA, styleB]">hello</div>-->
+</div>
+<script src="vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data:{
+            imgSrc:'https://cn.vuejs.org/images/logo',
+            aa:"active",
+            bb:"selected",
+            isActive:true,
+            dcolor:"blue",
+            size:30,
+            styleA:{
+                color:"yellow",
+                frontsize:50+"px"
+            },
+            styleB:{
+                border:1+'px',
+                backgroundColor:"red"
+            },
+            idname:"aaaa",
+            ffee:"ggg"  ,
+            num:0
+        },
+        computed:{
+            cisActive(){
+                if(this.isActive){
+                    return "active"
+                }else {
+                    return ""
+                }
+            },
+            add(){
+                this.num++;
+            }
+        }
+    })
+</script>
+</body>
+</html>
