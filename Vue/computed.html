@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--<h1>{{str.split('').reverse().join('')}}</h1>-->
+    <h1>{{reversedMessage}}</h1>
+    <input type="text" v-model="str">
+</div>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            str:"hello",
+            firstName:"ccc",
+            lastName:"Ches",
+            fullName:"ccc Ches",
+        },
+        computed:{
+            reversedMessage(){
+                return this.str.split('').reverse().join('')
+            }
+        },
+        watch:{
+            firstName:function(val){
+                this.fullName = val + " " + this.lastName
+            },
+            lastName:function (val){
+                this.fullName = this.firstName + " " + val
+            }
+        }
+    })
+</script>
+</body>
+</html>
